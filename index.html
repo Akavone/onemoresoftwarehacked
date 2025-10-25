@@ -12,17 +12,25 @@
     <!-- Tailwind CSS Script -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for a dark, tech-focused look */
+        /* Custom styles for a futuristic, terminal-like look */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0d1117; /* Dark background inspired by code editors */
-            color: #c9d1d9; /* Light text */
+            /* Use a monospace font for a 'code' feel */
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            background-color: #050b16; /* Deep dark blue */
+            color: #0ff; /* Neon blue */
         }
         .text-neon-blue {
-            color: #0ff; /* Neon blue color for accents */
+            color: #0ff;
         }
         .border-neon-blue {
             border-color: #0ff;
+        }
+        /* Adding a subtle glow effect to cards */
+        .card-glow-shadow {
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 5px rgba(0, 255, 255, 0.15);
+        }
+        .hover\:glow:hover {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 30px rgba(0, 255, 255, 0.3);
         }
     </style>
 </head>
@@ -33,14 +41,14 @@
             <h1 class="text-5xl sm:text-7xl font-extrabold mb-2 text-white">
                 <span class="text-neon-blue">One Software</span> Hacked
             </h1>
-            <p class="text-xl sm:text-2xl text-gray-400 font-light">
-                Documenting the World's Most Notorious Hacks and Digital Vulnerabilities
+            <p class="text-xl sm:text-2xl text-neon-blue font-light opacity-80">
+                System Execute: Documenting Notorious Hacks and Digital Vulnerabilities
             </p>
         </header>
 
         <main class="max-w-6xl mx-auto">
             <!-- SEO Introduction / Channel Summary -->
-            <section class="bg-[#161b22] p-6 sm:p-8 rounded-xl shadow-lg mb-12 border border-neon-blue/50">
+            <section class="bg-[#101725] p-6 sm:p-8 rounded-xl card-glow-shadow mb-12 border border-neon-blue/50">
                 <h2 class="text-3xl font-bold mb-4 text-white">
                     Cybersecurity Deep Dives &amp; Software History
                 </h2>
@@ -51,14 +59,14 @@
 
             <!-- Featured Videos Section -->
             <section class="mb-12">
-                <h2 class="text-3xl font-bold mb-6 text-neon-blue">Latest Hacking Documentaries</h2>
+                <h2 class="text-3xl font-bold mb-6 text-neon-blue">Latest Hacking Documentaries Readout</h2>
                 <div id="video-list" class="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
 
                     <!-- Video Item 1: Stuxnet. Data attributes now hold view count. -->
-                    <article class="bg-[#161b22] p-6 rounded-xl shadow-2xl transition duration-300 hover:shadow-neon-blue/30 border border-gray-700 hover:border-neon-blue" data-views="2">
+                    <article class="bg-[#101725] p-6 rounded-xl card-glow-shadow transition duration-300 hover:glow border border-gray-700 hover:border-neon-blue/80" data-views="2">
                         <h3 class="text-2xl font-semibold mb-2 text-white">Stuxnet - The CyberWorm that Cost US$10 Billion</h3>
                         <!-- Placeholder text, updated by JS -->
-                        <p class="video-meta text-sm text-gray-400 mb-4">Channel: One Software Hacked | <span class="view-count-placeholder">Loading Views...</span> | Date: 2025-10-25</p>
+                        <p class="video-meta text-sm text-neon-blue/60 mb-4">Channel: One Software Hacked | <span class="view-count-placeholder">Scanning...</span> | Date: 2025-10-25</p>
                         <p class="text-gray-300 mb-4">
                             Snippet: Another One Hacked EP2. The Stuxnet worm, which targeted the uranium enrichment facility at Natanz in Iran, caused significant...
                         </p>
@@ -68,10 +76,10 @@
                     </article>
                     
                     <!-- Video Item 2: Love Bug -->
-                    <article class="bg-[#161b22] p-6 rounded-xl shadow-2xl transition duration-300 hover:shadow-neon-blue/30 border border-gray-700 hover:border-neon-blue" data-views="1195">
+                    <article class="bg-[#101725] p-6 rounded-xl card-glow-shadow transition duration-300 hover:glow border border-gray-700 hover:border-neon-blue/80" data-views="1195">
                         <h3 class="text-2xl font-semibold mb-2 text-white">How a LOVE BUG caused US$10 BILLION DAMAGE</h3>
                         <!-- Placeholder text, updated by JS -->
-                        <p class="video-meta text-sm text-gray-400 mb-4">Channel: One Software Hacked | <span class="view-count-placeholder">Loading Views...</span> | Date: 2025-10-23</p>
+                        <p class="video-meta text-sm text-neon-blue/60 mb-4">Channel: One Software Hacked | <span class="view-count-placeholder">Scanning...</span> | Date: 2025-10-23</p>
                         <p class="text-gray-300 mb-4">
                             Snippet: Beware, and subscribe, or I shall hack you. (LOL) Have a nice day getting ha- I mean learning to hack!
                         </p>
@@ -81,10 +89,10 @@
                     </article>
                     
                     <!-- Video Item 3: Stuxnet Short -->
-                    <article class="bg-[#161b22] p-6 rounded-xl shadow-2xl transition duration-300 hover:shadow-neon-blue/30 border border-gray-700 hover:border-neon-blue" data-views="20">
+                    <article class="bg-[#101725] p-6 rounded-xl card-glow-shadow transition duration-300 hover:glow border border-gray-700 hover:border-neon-blue/80" data-views="20">
                         <h3 class="text-2xl font-semibold mb-2 text-white">Stuxnet - The CyberWorm that Caused EST US$10 Billion DAMAGE (Short)</h3>
                         <!-- Placeholder text, updated by JS -->
-                        <p class="video-meta text-sm text-gray-400 mb-4">Channel: One Software Hacked | <span class="view-count-placeholder">Loading Views...</span> | Date: 2025-10-25</p>
+                        <p class="video-meta text-sm text-neon-blue/60 mb-4">Channel: One Software Hacked | <span class="view-count-placeholder">Scanning...</span> | Date: 2025-10-25</p>
                         <p class="text-gray-300 mb-4">
                             Snippet: The worm itself was a masterpiece of digital engineering. It was the first known malware to bridge the gap between cyberspace...
                         </p>
@@ -94,10 +102,10 @@
                     </article>
 
                     <!-- Video Item 4: Love Bug Short -->
-                    <article class="bg-[#161b22] p-6 rounded-xl shadow-2xl transition duration-300 hover:shadow-neon-blue/30 border border-gray-700 hover:border-neon-blue" data-views="273">
+                    <article class="bg-[#101725] p-6 rounded-xl card-glow-shadow transition duration-300 hover:glow border border-gray-700 hover:border-neon-blue/80" data-views="273">
                         <h3 class="text-2xl font-semibold mb-2 text-white">The Love Bug - ILOVEYOU 2000 (Short)</h3>
                         <!-- Placeholder text, updated by JS -->
-                        <p class="video-meta text-sm text-gray-400 mb-4">Channel: One Software Hacked | <span class="view-count-placeholder">Loading Views...</span> | Date: 2025-10-23</p>
+                        <p class="video-meta text-sm text-neon-blue/60 mb-4">Channel: One Software Hacked | <span class="view-count-placeholder">Scanning...</span> | Date: 2025-10-23</p>
                         <p class="text-gray-300 mb-4">
                             Snippet: The internet was still young... when this happened! What happened? Documentary of Hacking Bugs.
                         </p>
@@ -110,7 +118,7 @@
             </section>
 
             <!-- Call to Action Section (Good for SEO) -->
-            <section class="text-center p-8 bg-black border-2 border-neon-blue rounded-xl">
+            <section class="text-center p-8 bg-[#0a101b] border-2 border-neon-blue rounded-xl card-glow-shadow">
                 <h3 class="text-3xl font-semibold mb-4 text-white">Ready for more in-depth cybersecurity analysis?</h3>
                 <p class="text-xl text-gray-300 mb-6">
                     Don't miss out on future episodes covering software vulnerabilities and digital forensics.
@@ -122,46 +130,64 @@
 
         </main>
 
-        <footer class="mt-12 text-center text-gray-500 text-sm">
-            <p>&copy; 2025 One Software Hacked Content Showcase | All content rights belong to the YouTube channel owner.</p>
+        <footer class="mt-12 text-center text-neon-blue/50 text-sm">
+            <p>Access Log: &copy; 2025 One Software Hacked Content Showcase | All content rights belong to the YouTube channel owner.</p>
         </footer>
     </div>
 
     <script>
         /**
-         * Formats a number for display with commas (e.g., 1195 -> 1,195).
-         * @param {string} numString - The number string from the data attribute.
-         * @returns {string} The formatted number string.
+         * Animates the view count by counting up from zero to the final value,
+         * simulating a live data feed or scan.
+         * @param {HTMLElement} placeholderElement - The span element to update.
+         * @param {number} finalViews - The total number of views to reach.
          */
-        function formatNumber(numString) {
-            const num = parseInt(numString, 10);
-            return num.toLocaleString();
+        function animateViewCount(placeholderElement, finalViews) {
+            const duration = 1500; // Total animation time in milliseconds
+            const steps = 60; // Number of update steps
+            const stepTime = duration / steps;
+            let current = 0;
+            const increment = finalViews / steps;
+
+            const timer = setInterval(() => {
+                current += increment;
+
+                if (current >= finalViews) {
+                    clearInterval(timer);
+                    current = finalViews; // Ensure it stops exactly on the final number
+                }
+                
+                // Update placeholder with a formatted, rounded count
+                placeholderElement.textContent = `Views: ${Math.floor(current).toLocaleString()}`;
+            }, stepTime);
         }
 
         /**
-         * Finds all video articles, reads the view count from the data attribute,
-         * and updates the placeholder text dynamically.
+         * Initializes the dynamic view updates for all video cards.
+         * Uses a staggered delay to make the data loading feel more realistic.
          */
-        function updateViewCounts() {
+        function initDynamicViewUpdates() {
             // Select all article elements that have the data-views attribute
             const videoArticles = document.querySelectorAll('article[data-views]');
 
-            videoArticles.forEach(article => {
-                const views = article.dataset.views; // Get the view count from data-views
-                const formattedViews = formatNumber(views);
-
-                // Find the placeholder span inside the current article
+            videoArticles.forEach((article, index) => {
+                const views = parseInt(article.dataset.views, 10);
                 const placeholder = article.querySelector('.view-count-placeholder');
 
-                if (placeholder) {
-                    // Update the text content to show the dynamic view count
-                    placeholder.textContent = `Views: ${formattedViews}`;
-                }
+                if (isNaN(views) || !placeholder) return;
+
+                // Staggered start delay for a cooler effect
+                const delay = index * 200 + 50; 
+                
+                // Start the animation after a slight delay
+                setTimeout(() => {
+                    animateViewCount(placeholder, views);
+                }, delay);
             });
         }
 
         // Run the function once the entire page content is loaded
-        window.onload = updateViewCounts;
+        window.onload = initDynamicViewUpdates;
     </script>
 </body>
 </html>
