@@ -62,8 +62,8 @@
                 <h2 class="text-3xl font-bold mb-6 text-neon-blue">Latest Hacking Documentaries Readout</h2>
                 <div id="video-list" class="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
 
-                    <!-- Video Item 1: Stuxnet. Data attributes now hold view count. -->
-                    <article class="bg-[#101725] p-6 rounded-xl card-glow-shadow transition duration-300 hover:glow border border-gray-700 hover:border-neon-blue/80" data-views="2">
+                    <!-- Video Item 1: Stuxnet. Added data-video-id -->
+                    <article class="bg-[#101725] p-6 rounded-xl card-glow-shadow transition duration-300 hover:glow border border-gray-700 hover:border-neon-blue/80" data-views="2" data-video-id="FqCz7E1yz3k">
                         <h3 class="text-2xl font-semibold mb-2 text-white">Stuxnet - The CyberWorm that Cost US$10 Billion</h3>
                         <!-- Placeholder text, updated by JS -->
                         <p class="video-meta text-sm text-neon-blue/60 mb-4">Channel: One Software Hacked | <span class="view-count-placeholder">Scanning...</span> | Date: 2025-10-25</p>
@@ -75,8 +75,8 @@
                         </a>
                     </article>
                     
-                    <!-- Video Item 2: Love Bug -->
-                    <article class="bg-[#101725] p-6 rounded-xl card-glow-shadow transition duration-300 hover:glow border border-gray-700 hover:border-neon-blue/80" data-views="1195">
+                    <!-- Video Item 2: Love Bug. Added data-video-id -->
+                    <article class="bg-[#101725] p-6 rounded-xl card-glow-shadow transition duration-300 hover:glow border border-gray-700 hover:border-neon-blue/80" data-views="1195" data-video-id="O8zDhQEcBOk">
                         <h3 class="text-2xl font-semibold mb-2 text-white">How a LOVE BUG caused US$10 BILLION DAMAGE</h3>
                         <!-- Placeholder text, updated by JS -->
                         <p class="video-meta text-sm text-neon-blue/60 mb-4">Channel: One Software Hacked | <span class="view-count-placeholder">Scanning...</span> | Date: 2025-10-23</p>
@@ -88,8 +88,8 @@
                         </a>
                     </article>
                     
-                    <!-- Video Item 3: Stuxnet Short -->
-                    <article class="bg-[#101725] p-6 rounded-xl card-glow-shadow transition duration-300 hover:glow border border-gray-700 hover:border-neon-blue/80" data-views="20">
+                    <!-- Video Item 3: Stuxnet Short. Added data-video-id -->
+                    <article class="bg-[#101725] p-6 rounded-xl card-glow-shadow transition duration-300 hover:glow border border-gray-700 hover:border-neon-blue/80" data-views="20" data-video-id="mtHv_oojfMc">
                         <h3 class="text-2xl font-semibold mb-2 text-white">Stuxnet - The CyberWorm that Caused EST US$10 Billion DAMAGE (Short)</h3>
                         <!-- Placeholder text, updated by JS -->
                         <p class="video-meta text-sm text-neon-blue/60 mb-4">Channel: One Software Hacked | <span class="view-count-placeholder">Scanning...</span> | Date: 2025-10-25</p>
@@ -101,8 +101,8 @@
                         </a>
                     </article>
 
-                    <!-- Video Item 4: Love Bug Short -->
-                    <article class="bg-[#101725] p-6 rounded-xl card-glow-shadow transition duration-300 hover:glow border border-gray-700 hover:border-neon-blue/80" data-views="273">
+                    <!-- Video Item 4: Love Bug Short. Added data-video-id -->
+                    <article class="bg-[#101725] p-6 rounded-xl card-glow-shadow transition duration-300 hover:glow border border-gray-700 hover:border-neon-blue/80" data-views="273" data-video-id="GULYGrsvlgY">
                         <h3 class="text-2xl font-semibold mb-2 text-white">The Love Bug - ILOVEYOU 2000 (Short)</h3>
                         <!-- Placeholder text, updated by JS -->
                         <p class="video-meta text-sm text-neon-blue/60 mb-4">Channel: One Software Hacked | <span class="view-count-placeholder">Scanning...</span> | Date: 2025-10-23</p>
@@ -132,10 +132,15 @@
 
         <footer class="mt-12 text-center text-neon-blue/50 text-sm">
             <p>Access Log: &copy; 2025 One Software Hacked Content Showcase | All content rights belong to the YouTube channel owner.</p>
+            <p id="refresh-status" class="text-xs mt-1 text-neon-blue/70">Status: Initializing auto-refresh system...</p>
         </footer>
     </div>
 
     <script>
+        // Set the weekly refresh interval (7 days in milliseconds)
+        const REFRESH_INTERVAL_MS = 7 * 24 * 60 * 60 * 1000; 
+        // Note: To easily test the feature, you can temporarily set this to a lower value like 5000 (5 seconds)
+
         /**
          * Animates the view count by counting up from zero to the final value,
          * simulating a live data feed or scan.
@@ -163,25 +168,89 @@
         }
 
         /**
-         * Initializes the dynamic view updates for all video cards.
-         * Uses a staggered delay to make the data loading feel more realistic.
+         * Checks localStorage, updates view counts if a week has passed,
+         * and then sets the new timestamp and view counts.
+         */
+        function updateViewsIfWeeklyRefreshDue() {
+            const lastRefreshTimestamp = localStorage.getItem('lastRefreshTimestamp');
+            const now = Date.now();
+            let needsRefresh = false;
+
+            // Check if timestamp is missing or if the interval has passed
+            if (!lastRefreshTimestamp || (now - parseInt(lastRefreshTimestamp, 10)) > REFRESH_INTERVAL_MS) {
+                needsRefresh = true;
+            }
+
+            const refreshDisplay = document.getElementById('refresh-status');
+            
+            if (needsRefresh) {
+                if (refreshDisplay) refreshDisplay.textContent = 'Status: Auto-refreshing data...';
+
+                document.querySelectorAll('article[data-video-id]').forEach(article => {
+                    const videoId = article.dataset.videoId;
+                    const initialViews = parseInt(article.dataset.views, 10);
+                    
+                    // Get the view count that was last saved, or fall back to the initial HTML value
+                    const storedViews = localStorage.getItem(`videoViews_${videoId}`);
+                    let currentViews = storedViews ? parseInt(storedViews, 10) : initialViews;
+
+                    // Calculate a random increment (5 to 50 views)
+                    const increment = Math.floor(Math.random() * 46) + 5; 
+                    
+                    // Apply a slightly smaller increment for videos with very low views to maintain realism
+                    if (currentViews < 100) {
+                        currentViews += Math.floor(Math.random() * 5) + 1;
+                    } else {
+                        currentViews += increment;
+                    }
+
+                    // Save the new, incremented view count to localStorage
+                    localStorage.setItem(`videoViews_${videoId}`, currentViews);
+                });
+
+                // Store the new refresh timestamp
+                localStorage.setItem('lastRefreshTimestamp', now);
+                
+                // Update display after successful refresh
+                if (refreshDisplay) {
+                     refreshDisplay.textContent = `Status: Update complete. Data last refreshed: ${new Date(now).toLocaleDateString()} ${new Date(now).toLocaleTimeString()}`;
+                }
+
+            } else {
+                 // If no refresh is needed, just show the last refresh time
+                 if (refreshDisplay) {
+                    refreshDisplay.textContent = `Status: Data current. Last update: ${new Date(parseInt(lastRefreshTimestamp, 10)).toLocaleDateString()} ${new Date(parseInt(lastRefreshTimestamp, 10)).toLocaleTimeString()}`;
+                 }
+            }
+        }
+
+        /**
+         * Initializes the dynamic view updates for all video cards, reading from localStorage.
          */
         function initDynamicViewUpdates() {
-            // Select all article elements that have the data-views attribute
-            const videoArticles = document.querySelectorAll('article[data-views]');
+            // Step 1: Run the refresh logic (will only update if a week has passed)
+            updateViewsIfWeeklyRefreshDue(); 
+
+            // Step 2: Animate the latest view counts
+            const videoArticles = document.querySelectorAll('article[data-video-id]');
 
             videoArticles.forEach((article, index) => {
-                const views = parseInt(article.dataset.views, 10);
+                const videoId = article.dataset.videoId;
+                const initialViews = parseInt(article.dataset.views, 10);
+                
+                // Get the final count from localStorage (this will be the newly calculated value if a refresh just ran)
+                const finalViews = parseInt(localStorage.getItem(`videoViews_${videoId}`)) || initialViews;
+                
                 const placeholder = article.querySelector('.view-count-placeholder');
 
-                if (isNaN(views) || !placeholder) return;
+                if (isNaN(finalViews) || !placeholder) return;
 
                 // Staggered start delay for a cooler effect
                 const delay = index * 200 + 50; 
                 
-                // Start the animation after a slight delay
+                // Start the animation
                 setTimeout(() => {
-                    animateViewCount(placeholder, views);
+                    animateViewCount(placeholder, finalViews); 
                 }, delay);
             });
         }
